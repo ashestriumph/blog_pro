@@ -1,0 +1,7 @@
+-> Le test de notre api avec postman
+
+    -> 1. dans server.js : app.use(express.json({extended: false})); permet d'initialiser le middleware pour envoyer les requetes depuis postman 
+    -> 2. après cette initialisation nous n'avons que besoin de formuler la requete suivante par exemple : 
+            {
+                "name": "Ashess"
+            }
