@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
   res.send(`Hello ${req.body.name}`); // send a response
 });
+app.get('/hello/:name', (req, res) => {
+  res.send(`Hello ${req.params.name} from params`); // send a response
+});
 
 // Start the server
 app.listen(PORT, () => {
