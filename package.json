@@ -1,0 +1,19 @@
+{
+  "name": "blog_pro",
+  "version": "1.0.0",
+  "description": "Mern stack blog application for full stack development",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon"
+  },
+  "keywords": [],
+  "author": "ashestriumph",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
