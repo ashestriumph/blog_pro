@@ -5,3 +5,33 @@
             {
                 "name": "Ashess"
             }
+
+
+------------------------------------- 15/04/2025 ----------------------------------------
+
+I let this code here for reminding
+
+// Check if the article exists
+  // if (!articleInfo[articleName]) { // if the article does not exist
+  //   return res.status(404).send('Article not found'); // send a 404 response
+  // }
+  // MongoClient.connect('mongodb://localhost:27017', { useNewUrlParser: true, useUnifiedTopology: true }, (err, client) => {
+  //   if (err) {
+  //     console.error('Error connecting to MongoDB:', err); // log the error
+  //     return res.status(500).send('Internal Server Error'); // send a 500 response
+  //   }
+  //   const db = client.db('mydatabase'); // connect to the database
+  //   const collection = db.collection('articles'); // get the collection
+  //   collection.findOne({ name: articleName }, (err, article) => { // find the article
+  //     if (err) {
+  //       console.error('Error fetching article:', err); // log the error
+  //       return res.status(500).send('Internal Server Error'); // send a 500 response
+  //     }
+  //     if (!article) {
+  //       return res.status(404).send('Article not found'); // send a 404 response
+  //     }
+  //     res.status(200).send(article); // send the article
+  //     client.close(); // close the connection
+  //   });
+  // });
+  // res.status(200).send(articleInfo[articleName]); // send the article
