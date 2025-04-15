@@ -1,3 +1,4 @@
+import "whatwg-fetch"; // Polyfill for fetch API
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';

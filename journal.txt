@@ -35,3 +35,5 @@ I let this code here for reminding
   //   });
   // });
   // res.status(200).send(articleInfo[articleName]); // send the article
+
+  After all for fetching the data I install "npm install --save whatwg-fetch" in client folder

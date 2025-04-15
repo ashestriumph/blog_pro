@@ -20,26 +20,46 @@ const articleInfo = {
 // Middleware to parse JSON bodies
 app.use(express.json({ extended: false })); // parse JSON bodies
 
-app.get("/api/articles/:name", async (req, res) => {
+const withDB = async (operations, res) => {
   try {
-    const articleName = req.params.name; // destructure the request params
     const client = await MongoClient.connect("mongodb://localhost:27017");
     const db = client.db("mernblog"); // connect to the database
-    const articleInfo = await db
-      .collection("articles")
-      .findOne({ name: articleName }); // get article the collection
-    res.status(200).json(articleInfo); // send the article
+    await operations(db); // perform the operations
     client.close(); // close the connection
   } catch (error) {
     res.status(500).json({ massage: "Error connecting to database", error }); // send an error response
   }
+};
+
+app.get("/api/articles/:name", async (req, res) => {
+  withDB(async (db) => {
+    const articleName = req.params.name; // destructure the request params
+
+    const articleInfo = await db
+      .collection("articles")
+      .findOne({ name: articleName }); // get article the collection
+    res.status(200).json(articleInfo); // send the article
+  }, res);
 });
 
 app.post("/api/articles/:name/add-comments", (req, res) => {
   const { username, text } = req.body; // destructure the request body
   const articleName = req.params.name; // destructure the request params
-  articleInfo[articleName].comments.push({ username, text }); // push the comment to the article
-  res.status(200).send(articleInfo[articleName]); // send a response
+
+  withDB(async (db) => {
+    const articleInfo = await db
+      .collection("articles")
+      .findOne({ name: articleName });
+    await db.collection('articles').updateOne({name: articleName}, {
+      $set: {
+        comments: articleInfo.comments.concat({ username, text }),
+      },
+    });
+    const updatedArticleInfo = await db
+      .collection("articles")
+      .findOne({ name: articleName });
+    res.status(200).json(updatedArticleInfo); // send the updated article
+  }, res);
 });
 
 // Start the server
