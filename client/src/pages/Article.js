@@ -8,6 +8,7 @@ import NotFound from './NotFound';
 
 // Component 
 import Articles from '../components/Articles';
+import CommentsList from '../components/CommentsList';
 
 const Article = () => {
   const { name } = useParams();
@@ -39,6 +40,7 @@ const Article = () => {
           {paragraph}
         </p>
       ))}
+      <CommentsList comments={articleInfo.comments} />
       <h1 className="my-4 text-xl font-bold text-gray-900 sm:text-2xl">Other Articles</h1>
       
       <div className="flex flex-wrap -m-4">
